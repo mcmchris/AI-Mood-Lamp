@@ -28,7 +28,7 @@
  * with slices per model window set to 4. Results in a slice size of 250 ms.
  * For more info: https://docs.edgeimpulse.com/docs/continuous-audio-sampling
  */
-#define EI_CLASSIFIER_SLICES_PER_MODEL_WINDOW 4
+#define EI_CLASSIFIER_SLICES_PER_MODEL_WINDOW 3
 /*
  ** NOTE: If you run into TFLite arena allocation issue.
  **
@@ -147,7 +147,9 @@ void setup()
 {
 
     pinMode(GPIO_OUTPUT_LED_GREEN, OUTPUT);
+
     servo1.attach(servoPin);
+    servo1.write(90);
 
     strip.begin();
     strip.setBrightness(255);
@@ -166,6 +168,8 @@ void setup()
     ei_printf("\tNo. of classes: %d\n", sizeof(ei_classifier_inferencing_categories) /
                                             sizeof(ei_classifier_inferencing_categories[0]));
 
+    delay(2000);
+    servo1.detach();
     run_classifier_init();
     if (microphone_inference_start(EI_CLASSIFIER_SLICE_SIZE) == false)
     {
@@ -227,8 +231,9 @@ void loop()
             memo = 1;
             digitalWrite(GPIO_OUTPUT_LED_GREEN, 0);
 
-            // ESP_ERROR_CHECK(mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, example_convert_servo_angle_to_duty_us(180)));
+            servo1.attach(servoPin);
             servo1.write(180);
+
             // Clear LED strip (turn off all LEDs)
             strip.clear();
             ei_printf("Party mode\r\n");
@@ -244,8 +249,9 @@ void loop()
             memo = 2;
             digitalWrite(GPIO_OUTPUT_LED_GREEN, 0);
 
-            // ESP_ERROR_CHECK(mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, example_convert_servo_angle_to_duty_us(20)));
-            servo1.write(200);
+            servo1.attach(servoPin);
+            servo1.write(130);
+
             // Clear LED strip (turn off all LEDs)
             strip.clear();
             ei_printf("Study mode\r\n");
@@ -260,8 +266,9 @@ void loop()
 
             digitalWrite(GPIO_OUTPUT_LED_GREEN, 0);
 
-            // ESP_ERROR_CHECK(mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, example_convert_servo_angle_to_duty_us(180)));
-            servo1.write(200);
+            servo1.attach(servoPin);
+            servo1.write(90);
+
             // Clear LED strip (turn off all LEDs)
             colorWipe(strip.Color(0, 0, 0), 10); // R, G, B, Delay
             ei_printf("Turn off\r\n");
@@ -274,8 +281,9 @@ void loop()
             memo = 3;
             digitalWrite(GPIO_OUTPUT_LED_GREEN, 0);
 
-            // ESP_ERROR_CHECK(mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, example_convert_servo_angle_to_duty_us(90)));
-            servo1.write(120);
+            servo1.attach(servoPin);
+            servo1.write(80);
+
             // Clear LED strip (turn off all LEDs)
             strip.clear();
             ei_printf("Work mode\r\n");
@@ -288,7 +296,7 @@ void loop()
 #if EI_CLASSIFIER_HAS_ANOMALY == 1
         ei_printf("    anomaly score: %.3f\n", result.anomaly);
 #endif
-
+        servo1.detach();
         print_results = 0;
     }
 }
