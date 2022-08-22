@@ -1,5 +1,4 @@
-# AI-Mood-Lamp
-WisBlock AI Mood Lamp w/ Edge Impulse
+# WisBlock AI Mood Lamp w/ Edge Impulse
 
 ![Portada](https://user-images.githubusercontent.com/49886387/186024720-b3898fb2-ab19-4d88-8e6c-dfd99538a960.jpg)
 
