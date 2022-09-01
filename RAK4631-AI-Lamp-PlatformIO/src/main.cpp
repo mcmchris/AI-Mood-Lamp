@@ -94,7 +94,7 @@ static bool record_ready = false;
 static signed short *sampleBuffer;
 static bool debug_nn = false; // Set this to true to see e.g. features generated from the raw signal
 static int print_results = -(EI_CLASSIFIER_SLICES_PER_MODEL_WINDOW);
-float threshold = 0.30;
+float threshold = 0.60;
 
 // Fill the dots one after the other with a color
 void colorWipe(uint32_t c, uint8_t wait)
