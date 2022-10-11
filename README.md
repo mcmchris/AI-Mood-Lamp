@@ -1,6 +1,7 @@
 # WisBlock AI Mood Lamp w/ Edge Impulse
 
-![Portada](https://user-images.githubusercontent.com/49886387/186024720-b3898fb2-ab19-4d88-8e6c-dfd99538a960.jpg)
+![PXL_20220822_210505310](https://user-images.githubusercontent.com/49886387/195140264-5539be18-77b2-401d-8404-739846be7195.jpg)
+
 
 **Pins used:**
 
